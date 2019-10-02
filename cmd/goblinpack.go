@@ -18,8 +18,8 @@ func main() {
 
 	name := os.Args[1]
 	moduleDir := path.Join("_data/", name)
-	targetFilepath := path.Join(moduleDir, name + ".go")
-	decodersFilepath := path.Join(moduleDir, "/decoders.go")
+	targetFilepath := path.Join(moduleDir, "data.go")
+	decodersFilepath := path.Join(moduleDir, "decoders.go")
 	dataFilepaths := os.Args[2:]
 
 	err := os.MkdirAll(moduleDir, 0755)
