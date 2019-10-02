@@ -38,7 +38,7 @@ func main() {
 
 	for _, filepath := range dataFilepaths {
 
-		_, err := fmt.Fprintf(targetFile, `    "%s": `, filepath)
+		_, err := fmt.Fprintf(targetFile, `	"%s": `, filepath)
 		checkErr(err)
 
 		sourceFile, _ := os.Open(filepath)
