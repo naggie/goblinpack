@@ -1,12 +1,13 @@
 Goblinpack allows packing of binary assets inside Go executables. Unlike other packers, it:
 
 * Has no binary overhead (some packers use base64 or even ascii-hex
-  gzip data. Goblinpack uses byte slices. There is a 5x overhead for source,
+  gzip data. Goblinpack uses byte slices. There is a 6x overhead for source,
   but (practically) no overhead for the compiled executable.
 * Allows control of what executables get which assets
 * Does not have any clever code to work in dev mode without creating bundles (which makes it simpler)
 * Does not compress the files. I suggest using [UPX](https://upx.github.io/) to
   compress the entire binary, with `-s -w` LDFLAGS to strip debugging symbols.
+* Produces self-contained data files with no dependencies
 * Is actively maintained
 
 
@@ -28,3 +29,9 @@ Produces a module, `goblinpack-generated/sounds` which contains the following me
 
 If there's demand I might implement `http.FileSystem` (like
 [packr](https://github.com/gobuffalo/packr) for easy use with `http.Server`.)
+
+
+----
+
+* TODO tests
+* TODO go fmt on data files should do nothing

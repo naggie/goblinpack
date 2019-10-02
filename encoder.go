@@ -32,9 +32,13 @@ func WriteLiteralByteSlice(r *os.File, w *os.File) error {
 		_, err = w.Write(hexCode)
 		if err != nil { return err }
 
-		_, err = w.WriteString(",")
+		_, err = w.WriteString(", ")
 		if err != nil { return err }
 	}
+
+	// forget last comma + space for go fmt compliance
+	_, err = w.Seek(-2, 1)
+	if err != nil { return err }
 
 	_, err = w.WriteString("}")
 	if err != nil { return err }
