@@ -27,7 +27,7 @@ Let's say you have a directory called `sounds` containing `.wav` files.
 
 You can then use the data:
 
-    import _data
+    import github.com/username/repository/_data/sounds
 
     r, err := _data.GetReader("test.wav")
 
