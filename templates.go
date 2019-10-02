@@ -1,16 +1,16 @@
 package goblinpack
 
-DataFileHeader := """
+const DataFileHeader string = `
 package %s
 
 import (
-	\"bytes\"
-	\"errors\"
+	"bytes"
+	"errors"
 
 var files = map[string][]byte{
-"""
+`
 
-DataFileFooter := """
+const DataFileFooter string = `
 }
 
 func GetByteSlice(path string) ([]byte, error) {
@@ -26,4 +26,4 @@ func GetReader(path string) (io.Reader, error) {
 	return bytes.NewReader(data)
 }
 
-"""
+`
