@@ -59,5 +59,6 @@ Packr's implementation: https://github.com/gobuffalo/packd/blob/master/file.go
 
 ----
 
-* TODO tests
+* TODO tests:
 * TODO go fmt on data files should do nothing
+* TODO roundtrip test

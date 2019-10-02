@@ -1,9 +1,9 @@
 package main
 
 import (
-	"os"
-	"github.com/naggie/goblinpack"
 	"fmt"
+	"github.com/naggie/goblinpack"
+	"os"
 	"path"
 )
 
