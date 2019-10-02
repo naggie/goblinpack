@@ -4,19 +4,34 @@ import (
 	"os"
 	"github.com/naggie/goblinpack"
 	"fmt"
+	"path"
 )
 
 // NOTE could use buffer instead of file, this would enable text/template support
 // could even do the whole thing with a template https://stackoverflow.com/questions/25173549/go-templates-range-over-string
 
 func main() {
-	targetFile, _ := os.Create("/tmp/testpack.go")
-	defer targetFile.Close()
+	name := os.Args[1]
+	moduleDir := path.Join("_data/", name)
+	targetFilepath := path.Join(moduleDir, name + ".go")
+	decodersFilepath := path.Join(moduleDir, "/decoders.go")
+	dataFilepaths := os.Args[2:]
 
-	_, err := fmt.Fprintf(targetFile, goblinpack.DataFileHeader, "testpackage")
+	err := os.MkdirAll(moduleDir, 0755)
 	checkErr(err)
 
-	for _, filepath := range os.Args[1:] {
+	decodersFile, _ := os.Create(decodersFilepath)
+	_, err = fmt.Fprintf(decodersFile, goblinpack.Decoders, name)
+	checkErr(err)
+	decodersFile.Close()
+
+	targetFile, _ := os.Create(targetFilepath)
+	defer targetFile.Close()
+
+	_, err = fmt.Fprintf(targetFile, goblinpack.DataFileHeader, name)
+	checkErr(err)
+
+	for _, filepath := range dataFilepaths {
 
 		_, err := fmt.Fprintf(targetFile, `    "%s": `, filepath)
 		checkErr(err)

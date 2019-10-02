@@ -11,15 +11,28 @@ Goblinpack allows packing of binary assets inside Go executables. Unlike other p
 * Is actively maintained
 
 
-# Example usage
+# Usage
+
+    goblinpack <name> <files...>
+
+Goblinpack will then generate a golang module:
+
+    _data/<name>/data.go
+    _data/<name>/decoders.go
 
 Let's say you have a directory called `sounds` containing `.wav` files.
 
     go get github.com/naggie/goblinpack
-    goblinpack --name sounds sounds/*
+    goblinpack sounds sounds/*
+
+You can then use the data:
+
+    import _data
+
+    r, err := _data.GetReader("test.wav")
 
 
-Produces a module, `goblinpack-generated/sounds` which contains the following methods:
+Produces a module, `_data/sounds` which contains the following methods:
 
 * `GetReader(filepath string) (io.Reader, err)`
 * `GetByteSlice(filepath string) *bytes[]`
@@ -29,6 +42,8 @@ Produces a module, `goblinpack-generated/sounds` which contains the following me
 
 If there's demand I might implement `http.FileSystem` (like
 [packr](https://github.com/gobuffalo/packr) for easy use with `http.Server`.)
+
+Packr's implementation: https://github.com/gobuffalo/packd/blob/master/file.go
 
 
 ----

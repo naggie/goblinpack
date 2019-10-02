@@ -2,15 +2,16 @@ package goblinpack
 
 const DataFileHeader string = `package %s
 
+var files = map[string][]byte{
+`
+
+const DataFileFooter string = "}\n"
+
+const Decoders string = `package %s
 import (
 	"bytes"
 	"errors"
 )
-
-var files = map[string][]byte{
-`
-
-const DataFileFooter string = `}
 
 func GetByteSlice(filepath string) ([]byte, error) {
 	if data, ok := files[filepath]; !ok {
