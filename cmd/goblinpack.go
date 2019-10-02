@@ -11,6 +11,11 @@ import (
 // could even do the whole thing with a template https://stackoverflow.com/questions/25173549/go-templates-range-over-string
 
 func main() {
+	if len(os.Args) < 3 {
+		fmt.Println("Usage: goblinpack <name> <files...>")
+		os.Exit(0)
+	}
+
 	name := os.Args[1]
 	moduleDir := path.Join("_data/", name)
 	targetFilepath := path.Join(moduleDir, name + ".go")

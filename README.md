@@ -41,6 +41,7 @@ Produces a module, `_data/sounds` which contains the following methods:
 # Tips
 
 * Add `_data` to your `.gitignore` file. Generated data file should not be checked in
+* Make sure you don't accidentally import data files that aren't needed
 * Use [UPX](https://upx.github.io/) to compress the entire binary
 * Use [`-s -w` LDFLAGS](https://blog.filippo.io/shrink-your-go-binaries-with-this-one-weird-trick/)
   to strip debugging symbols to make your exe even smaller
