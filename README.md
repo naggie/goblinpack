@@ -17,3 +17,9 @@ Produces a module, `goblinpack-generated/sounds` which contains the following me
 
 * `GetReader(filepath string) (io.Reader, err)`
 * `GetByteSlice(filepath string) *bytes[]`
+
+
+-----
+
+If there's demand I might implement `http.FileSystem` (like
+[packr](https://github.com/gobuffalo/packr) for easy use with `http.Server`.
