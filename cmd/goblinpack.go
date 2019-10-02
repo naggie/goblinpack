@@ -6,6 +6,9 @@ import (
 	"io"
 )
 
+// NOTE could use buffer instead of file, this would enable text/template support
+// could even do the whole thing with a template https://stackoverflow.com/questions/25173549/go-templates-range-over-string
+
 func main() {
 	targetFile, _ := os.Create("testpack.go")
 	defer targetFile.Close()
