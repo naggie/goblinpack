@@ -38,6 +38,16 @@ Produces a module, `_data/sounds` which contains the following methods:
 * `GetByteSlice(filepath string) *bytes[]`
 
 
+# Tips
+
+* Add `_data` to your `.gitignore` file. Generated data file should not be checked in
+* Use [UPX](https://upx.github.io/) to compress the entire binary
+* Use [`-s -w` LDFLAGS](https://blog.filippo.io/shrink-your-go-binaries-with-this-one-weird-trick/)
+  to strip debugging symbols to make your exe even smaller
+* Use [go generate](https://blog.carlmjohnson.net/post/2016-11-27-how-to-use-go-generate/)
+  to activate goblinpack as part of your build pipeline
+
+
 -----
 
 If there's demand I might implement `http.FileSystem` (like
