@@ -3,7 +3,7 @@ Goblinpack allows packing of binary assets inside Go executables. Unlike other p
 * Has no binary overhead (some packers use base64 or even ascii-hex
   gzip data. Goblinpack uses byte slices. There is a 6x overhead for source,
   but (practically) no overhead for the compiled executable.
-* Allows control of what executables get which assets
+* Allows control of what executables get which assets -- generated data files can be imported separately
 * Does not have any clever code to work in dev mode without creating bundles (which makes it simpler)
 * Does not compress the files. I suggest using [UPX](https://upx.github.io/) to
   compress the entire binary, with `-s -w` LDFLAGS to strip debugging symbols.
@@ -59,6 +59,11 @@ Packr's implementation: https://github.com/gobuffalo/packd/blob/master/file.go
 
 ----
 
-* TODO tests:
-* TODO go fmt on data files should do nothing
-* TODO roundtrip test
+Tests to do:
+* go fmt on data files should do nothing
+* roundtrip test
+
+
+# Alternatives
+
+See https://github.com/golang/go/wiki/GcToolchainTricks . Note appending a zip archive is more suitable for larger (>10MB) files.
