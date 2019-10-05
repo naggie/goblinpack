@@ -12,12 +12,12 @@ import (
 
 func main() {
 	if len(os.Args) < 3 {
-		fmt.Println("Usage: goblinpack <name> <files...>")
+		fmt.Println("Usage: goblinpack <module path> <files...>")
 		os.Exit(0)
 	}
 
-	name := os.Args[1]
-	moduleDir := path.Join("_data/", name)
+	name := path.Base(os.Args[1])
+	moduleDir := os.Args[1]
 	targetFilepath := path.Join(moduleDir, "data.go")
 	decodersFilepath := path.Join(moduleDir, "decoders.go")
 	dataFilepaths := os.Args[2:]

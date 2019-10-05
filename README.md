@@ -3,27 +3,25 @@ Goblinpack allows packing of binary assets inside Go executables. Unlike other p
 * Has no binary overhead (some packers use base64 or even ascii-hex
   gzip data. Goblinpack uses byte slices. There is a 6x overhead for source,
   but (practically) no overhead for the compiled executable.
-* Allows control of what executables get which assets -- generated data files can be imported separately
 * Does not have any clever code to work in dev mode without creating bundles (which makes it simpler)
 * Does not compress the files. I suggest using [UPX](https://upx.github.io/) to
   compress the entire binary, with `-s -w` LDFLAGS to strip debugging symbols.
 * Produces self-contained data files with no dependencies
-* Is actively maintained
 
 
 # Usage
 
-    goblinpack <name> <files...>
+    goblinpack <module path> <files...>
 
-Goblinpack will then generate a golang module:
+Goblinpack will then generate a golang module, creating directories as necessary:
 
-    _data/<name>/data.go
-    _data/<name>/decoders.go
+    <module path>/data.go
+    <module path>/decoders.go
 
 Let's say you have a directory called `sounds` containing `.wav` files.
 
     go get github.com/naggie/goblinpack
-    goblinpack sounds sounds/*
+    goblinpack _data/sounds sounds/*
 
 You can then use the data:
 
@@ -64,6 +62,8 @@ Tests to do:
 * roundtrip test
 
 
-# Alternatives
+# Large files
 
-See https://github.com/golang/go/wiki/GcToolchainTricks . Note appending a zip archive is more suitable for larger (>10MB) files.
+See https://github.com/golang/go/wiki/GcToolchainTricks . Note appending a zip
+archive is more suitable for larger (>10MB) files as the go compiler struggles
+with large source files.
