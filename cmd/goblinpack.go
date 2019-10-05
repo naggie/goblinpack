@@ -38,6 +38,8 @@ func main() {
 
 	for _, filepath := range dataFilepaths {
 
+		fmt.Println(filepath)
+
 		_, err := fmt.Fprintf(targetFile, `	"%s": `, filepath)
 		checkErr(err)
 
