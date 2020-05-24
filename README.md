@@ -20,7 +20,7 @@ Goblinpack will then generate a golang module, creating directories as necessary
 
 Let's say you have a directory called `sounds` containing `.wav` files.
 
-    go get github.com/naggie/goblinpack
+    GO111MODULE=off go get -u github.com/naggie/goblinpack/goblinpack
     goblinpack _data/sounds sounds/*
 
 You can then use the data:
