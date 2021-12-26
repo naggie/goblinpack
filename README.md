@@ -1,3 +1,9 @@
+Goblinpack is retired since go 1.16 was released
+
+see https://harsimranmaan.medium.com/embedding-static-files-in-a-go-binary-using-go-embed-bac505f3cb9a
+
+----
+
 Goblinpack allows packing of binary assets inside Go executables. Unlike other packers, it:
 
 * Has no binary overhead (some packers use base64 or even ascii-hex
